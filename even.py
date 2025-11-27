@@ -1,15 +1,15 @@
 import sys
 
-if len(sys.argv) > 1:
-    script_name = sys.argv[0]
-    numbers = sys.argv[1:]
-    print("User provided input values:")
+# If no argument or empty string is passed → use default
+if len(sys.argv) < 2 or sys.argv[1].strip() == "":
+    nums = "1 2 3 4 5"    # default values
+    print("No input provided. Using default values:", nums)
 else:
-    script_name = sys.argv[0]
-    numbers = ["10", "21", "32", "45", "50"]
-    print("No input given — using default values:")
+    nums = sys.argv[1]
+    print("User provided input values:", nums)
 
-numbers = [int(n) for n in numbers]
+# Convert only if there are valid numbers
+numbers = [int(n) for n in nums.split() if n.strip() != ""]
 
 even_count = 0
 odd_count = 0
@@ -20,8 +20,6 @@ for n in numbers:
     else:
         odd_count += 1
 
-print("\n--- Even and Odd Count ---")
-print("Script Name:", script_name)
 print("Numbers:", numbers)
-print("Even Numbers Count:", even_count)
-print("Odd Numbers Count:", odd_count)
+print("Even Count:", even_count)
+print("Odd Count:", odd_count)
